@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <style>
+    /* CSS styles for the cart page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #9ef0ff;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .navbar {
+			background-color: #333;
+			overflow: hidden;
+		}
+
+		.navbar a {
+			float: left;
+			color: white;
+			text-align: center;
+            align-items: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+		}
+        
+		.navbar a:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.active {
+			background-color: #333;
+			color: white;
+		}
+    .cart-item img {
+      width: 200px;
+      height: 100px;
+      margin-right: 25px;
+     
+    }
+    .cart-item .item-info {
+      flex-grow: 1;
+    }
+    .cart-item .item-info h4 {
+      margin: 0;
+    }
+    .cart-item .item-info p {
+      margin: 0;
+    }
+    .cart-total {
+      font-weight: bold;
+      text-align: right;
+    }
+    .checkout-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+		<a class="active" href="index.html">Home</a>
+		<a href="#">Product</a>
+		<a href="About us.html">About</a>
+		<a href="contactus.html">Contact</a>
+	</div>
+    
+    <script>
+		// Add active class to the current button (highlight it)
+		var navbar = document.getElementsByClassName("navbar");
+		var links = navbar.getElementsByTagName("a");
+		for (var i = 0; i < links.length; i++) {
+			links[i].addEventListener("click", function() {
+				var current = document.getElementsByClassName("active");
+				current[0].className = current[0].className.replace(" active", "");
+				this.className += " active";
+			});
+		}
+	</script>
+   
+  <h1>Shopping Cart</h1>
+
+  <div id="cart-items">
+    <!-- Cart items will be dynamically added here -->
+  </div>
+
+  <div class="cart-total">
+    <p>Total: <span id="total-price">₹0</span></p>
+  </div>
+
+  <button class="checkout-button"><a href="checkout.html">Checkout</button></a>
+
+  <script>
+    // JavaScript code for the cart page
+
+    // Sample cart items data (replace with your own data)
+    var cartItems = [
+      {
+        name: "Macbook Pro",
+        image: "p1.png",
+        price: 399999.00
+      },
+      {
+        name: "Iphone 12 mini",
+        image: "https://rukminim1.flixcart.com/image/416/416/kg8avm80/mobile/y/7/n/apple-iphone-12-dummyapplefsn-original-imafwg8dpyjvgg3j.jpeg?q=70",
+        price: 77770.00
+      },
+      {
+        name: "Sleeve for macbook",
+        image: "https://images-eu.ssl-images-amazon.com/images/I/71eknZxZLmL._AC_UL320_SR320,320_.jpg",
+        price: 2499.99
+      },
+    
+    ];
+
+    // Function to render the cart items
+    function renderCartItems() {
+      var cartItemsContainer = document.getElementById("cart-items");
+      cartItemsContainer.innerHTML = "";
+
+      var totalPrice = 0;
+
+      for (var i = 0; i < cartItems.length; i++) {
+        var cartItem = cartItems[i];
+
+        var itemContainer = document.createElement("div");
+        itemContainer.className = "cart-item";
+
+        var image = document.createElement("img");
+        image.src = cartItem.image;
+
+        var itemInfo = document.createElement("div");
+        itemInfo.className = "item-info";
+
+        var itemName = document.createElement("h4");
+        itemName.innerText = cartItem.name;
+
+        var itemPrice = document.createElement("p");
+        itemPrice.innerText = "Price: ₹" + cartItem.price;
+
+        itemInfo.appendChild(itemName);
+        itemInfo.appendChild(itemPrice);
+
+        itemContainer.appendChild(image);
+        itemContainer.appendChild(itemInfo);
+
+        cartItemsContainer.appendChild(itemContainer);
+
+        totalPrice += cartItem.price;
+      }
+
+      var totalPriceElement = document.getElementById("total-price");
+      totalPriceElement.innerText = "₹" + totalPrice;
+    }
+
+    // Render the cart items when the page loads
+    window.onload = function() {
+      renderCartItems();
+    };
+  </script>
+</body>
+</html>

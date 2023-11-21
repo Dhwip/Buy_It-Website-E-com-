@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+    <div class="navbar">
+		<a  href="index.html">Home</a>
+		<a href="#">Product</a>
+		<a href="About us.html">About</a>
+		<a href="contactus.html">Contact</a>
+        <a class="active" href="login.html">Login</a>
+    </div>
+</header>
+    <script>
+		// Add active class to the current button (highlight it)
+		var navbar = document.getElementsByClassName("navbar");
+		var links = navbar.getElementsByTagName("a");
+		for (var i = 0; i < links.length; i++) {
+			links[i].addEventListener("click", function() {
+				var current = document.getElementsByClassName("active");
+				current[0].className = current[0].className.replace(" active", "");
+				this.className += " active";
+			});
+		}
+	</script>
+   
+    <section class="wrapper">
+        <div class="form signup">
+            <header>Login</header>
+            <form action="#">
+                <input type="text" placeholder="Email ID" required>
+                <input type="password" placeholder="Password" required>
+                <a href="#">Forgot Password?</a>
+                <input type="submit" value="Login">
+            </form>
+
+        </div>
+        
+        <div class="form login">
+            <header>Sign up</header>
+            <form action="#">
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Email ID" required>
+                <input type="password" placeholder="Password" required>
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck">
+                    <label for="signupCheck">Terms & Condition</label>
+                </div>
+            
+                <input type="submit" value="Signup" />
+            
+            </form>
+        </div>
+        <script>
+            const wrapper = document.querySelector(".wrapper");
+            signupHeader = document.querySelector(".signup header");
+            loginHeader = document.querySelector(".login header");
+
+            loginHeader.addEventListener("click", () =>{
+                wrapper.classList.add("active");
+            });
+            
+            signupHeader.addEventListener("click", () =>{
+                wrapper.classList.remove("active");
+            });
+        </script>
+    </section>
+</body>
+</html>
